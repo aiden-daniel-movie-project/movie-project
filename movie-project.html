@@ -22,22 +22,21 @@
 </header>
 
 <main>
-    <div class="container-fluid ">
-        <div class="card">
-            <div id="card-nav" class="d-flex space-between bg-dark text-light">
-                <h5 class="card-title me-auto">Movie Title</h5>
-                <div id="movie rating" class="me-auto">
-                    ***** (4.8/ 5)
-                </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon">:</span>
-                </button>
-            </div>
-            <img class="card-img-top" src="img.png/" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">(Movie) will be coming soon to a theatre near you! (movie description)</p>
-            </div>
+    <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-touch="true" data-bs-interval="false">
+        <div id="movie-card-container" class="carousel-inner">
+            <!--                    cards go here  -->
+
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="container-fluid ">
     </div>
 </main>
 
