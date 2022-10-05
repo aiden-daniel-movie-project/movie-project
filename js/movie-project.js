@@ -4,40 +4,40 @@ $(function (){
     const Movies = {
         URL: 'https:fuchsia-almondine-fisher.glitch.me/movies',
         getRequest() {
-            return fetch(`${Movies.URL}`).then(resp => resp.json()).then(data => console.log(data));
-        },
-        newMovieOptions: {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(/*new movie reference*/)
-        },
-        newMovieRequest() {
-            return fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
-        },
-        editOptions: {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(modification)
-        },
-        editRequest() {
-            return fetch(Movies.URL + /*string with '/data-id'*/, Movies.editOptions).then(Movies.getRequest);
-        },
-        deleteOptions: {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        },
-        deleteRequest() {
-            return fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
+            fetch(`${Movies.URL}`).then(resp => resp.json()).then(data => console.log(data));
         }
+        // newMovieOptions: {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(/*new movie reference*/)
+        // },
+        // newMovieRequest() {
+        //     fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
+        // },
+        // editOptions: {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(modification)
+        // },
+        // editRequest() {
+        //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.editOptions).then(Movies.getRequest);
+        // },
+        // deleteOptions: {
+        //     method: 'DELETE',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // },
+        // deleteRequest() {
+        //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
+        // }
     }
-
-    $.get()
+Movies.getRequest()
+    // $.get()
 
 // Allow users to add new movies
 // Create a form for adding a new movie that has fields for the movie's title and rating
