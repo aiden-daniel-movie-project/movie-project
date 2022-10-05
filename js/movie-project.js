@@ -36,32 +36,36 @@ $(function (){
         //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
         // }
         insertMovieCards(){
-            $('#movie-card-container').html(`<div class="card carousel-item active">
-        <div id="card-${Movies.getRequest().id}" class="d-flex space-between bg-dark text-light">
-          <h2 class="card-title me-auto">${Movies.getRequest().title}</h2>
-          <div id="movie rating" class="me-auto">
-            ***** (${Movies.getRequest().rating}/ 5)
-          </div>
-          <div class="dropdownmenu">
-      <button class="dropbutton" id="m-current-city">
-        OPTIONS
-      </button>
-      <div id="Dropdown" class="dropdownmenu-content">
-        <ul>
-            <li>Edit</li>
-            <li>Delete</li>
-        </ul>
-      </div>
-        </div>
-        <img class="card-img-top" src=${Movies.getRequest().poster} alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text">${Movies.getRequest().title} will be coming soon to a theatre near you! <br> ${Movies.getRequest().plot}</p>
-        </div>
-      </div>`)
+            let movie;
+            for (let movieArrayIndex = 0; movieArrayIndex < Movies.getRequest().length; movieArrayIndex++) {
+                movie = Movies.getRequest()[movieArrayIndex];
+                      $('#movie-card-container').html(`<div class="card carousel-item active">
+                  <div id="card-${Movies.getRequest().id}" class="d-flex space-between bg-dark text-light">
+                    <h2 class="card-title me-auto">${Movies.getRequest().title}</h2>
+                    <div id="movie rating" class="me-auto">
+                      ***** (${Movies.getRequest().rating}/ 5)
+                    </div>
+                    <div class="dropdownmenu">
+                <button class="dropbutton" id="m-current-city">
+                  OPTIONS
+                </button>
+                <div id="Dropdown" class="dropdownmenu-content">
+                  <ul>
+                      <li>Edit</li>
+                      <li>Delete</li>
+                  </ul>
+                </div>
+                  </div>
+                  <img class="card-img-top" src=${Movies.getRequest().poster} alt="Card image cap">
+                  <div class="card-body">
+                    <p class="card-text">${Movies.getRequest().title} will be coming soon to a theatre near you! <br> ${Movies.getRequest().plot}</p>
+                  </div>
+                </div>`)
+            }
         }
     }
 
-    Movies.insertMovieCards();
+    // Movies.insertMovieCards();
     // $.get()
 
 // Allow users to add new movies
