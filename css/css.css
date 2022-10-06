@@ -13,3 +13,7 @@ body{
 #movie-card-container{
     display: flex;
 }
+.poster-size-control {
+    width: 20vw;
+    height: 30vh;
+}
