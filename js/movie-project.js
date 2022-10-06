@@ -59,17 +59,6 @@ $(function (){
                     <li><a class="dropdown-item" href="#">Delete</a></li>
                   </ul>
                 </div>
-<!--                                <div class="dropdownmenu">-->
-<!--                                    <button class="dropbutton" id="m-current-city">-->
-<!--                                      OPTIONS-->
-<!--                                    </button>-->
-<!--                                    <div id="Dropdown" class="dropdownmenu-content">-->
-<!--                                          <ul>-->
-<!--                                              <li class="dr">Edit</li>-->
-<!--                                              <li>Delete</li>-->
-<!--                                          </ul>-->
-<!--                                    </div>-->
-<!--                                </div>-->
         </header>
             <div class="poster-size-control">
                 <img class="img-fluid" src=${movieArray[movieArrayIndex].poster} alt="Card image cap">
