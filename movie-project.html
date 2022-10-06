@@ -8,15 +8,54 @@
     <script src="jquery-3.6.1.min.js"></script>
     <script src="keys.js"></script>
     <script src="js/movie-project.js"></script>
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" href="css/css.css">
 </head>
-<body>
+<body >
 <header>
     <nav id="main-nav" class="navbar bg-light">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <span class="navbar-brand mb-0 h1">Navbar</span>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="badge bg-secondary">=</span>More Options
+                </button>
+                <ul class="dropdown-menu">
+                    <li><button id="new-movie-button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#new-movie-modal"><span class="badge bg-secondary">+</span> New Movie</button></li>
+                    <li><a id="filter-button" class="dropdown-item"><span class="badge bg-secondary">V</span> Filter</a></li>
+                    <li><a id="dark-mode-button" class="dropdown-item bg-dark text-light"><span class="badge bg-light text-dark">0</span> Dark</a></li>
+                </ul>
+            </div>
+<!-- Modal for adding new card -->
+            <div class="modal fade" id="new-movie-modal" tabindex="-1" aria-labelledby="new-modal-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="new-modal-label">New Movie</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="new-movie-title" class="col-form-label">Title:</label>
+                                    <input type="text" class="form-control" id="new-movie-title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="new-description-text" class="col-form-label">Description:</label>
+                                    <textarea class="form-control" id="new-description-text"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<button id="test">click</button>
+
+            <span class="navbar-brand mb-0 h1">Movies Website</span>
+
         </div>
     </nav>
 </header>
