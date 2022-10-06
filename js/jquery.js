@@ -1,6 +1,5 @@
 $(function (){
-    $('#test').on('click', function (){
-        alert("howdy")
-
+    $('#dark-mode-button').on("click", function(){
+        $('*').toggleClass("dark-mode");
     })
 })
