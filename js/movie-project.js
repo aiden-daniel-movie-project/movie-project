@@ -4,7 +4,7 @@ $(function (){
     const Movies = {
         URL: 'https:fuchsia-almondine-fisher.glitch.me/movies',
         getRequest(){
-            return  fetch(`${Movies.URL}`).then(resp => resp.json()).then(data => console.log(data));
+            return  fetch(`${Movies.URL}`).then(resp => resp.json());
         },
         // newMovieOptions: {
         //     method: 'POST',
@@ -35,15 +35,20 @@ $(function (){
         // deleteRequest() {
         //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
         // }
-        insertMovieCards(){
-            let movie;
-            for (let movieArrayIndex = 0; movieArrayIndex < Movies.getRequest().length; movieArrayIndex++) {
-                movie = Movies.getRequest()[movieArrayIndex];
-                      $('#movie-card-container').html(`<div class="card carousel-item active">
-                  <div id="card-${Movies.getRequest().id}" class="d-flex space-between bg-dark text-light">
-                    <h2 class="card-title me-auto">${Movies.getRequest().title}</h2>
+        async insertMovieCards(){
+            try {
+                let movieArray = await Movies.getRequest();
+                console.log(movieArray)
+
+                for (let movieArrayIndex = 0; movieArrayIndex < movieArray.length; movieArrayIndex++) {
+                    if (movieArrayIndex === 0){
+                        console.log('yo')
+                        // $('.carousel-indicators').html(`<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`)
+                        $('#movie-card-container').html(`<div class="card">
+                  <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex space-between bg-dark text-light">
+                    <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>
                     <div id="movie rating" class="me-auto">
-                      ***** (${Movies.getRequest().rating}/ 5)
+                      ***** (${movieArray[movieArrayIndex].rating}/ 5)
                     </div>
                     <div class="dropdownmenu">
                 <button class="dropbutton" id="m-current-city">
@@ -56,16 +61,45 @@ $(function (){
                   </ul>
                 </div>
                   </div>
-                  <img class="card-img-top" src=${Movies.getRequest().poster} alt="Card image cap">
+                  <img class="card-img-top" src=${movieArray[movieArrayIndex].poster} alt="Card image cap">
                   <div class="card-body">
-                    <p class="card-text">${Movies.getRequest().title} will be coming soon to a theatre near you! <br> ${Movies.getRequest().plot}</p>
+                    <p class="card-text">${movieArray[movieArrayIndex].title} will be coming soon to a theatre near you! <br> ${movieArray[movieArrayIndex].plot}</p>
                   </div>
                 </div>`)
+                    } else {
+                        // $('.carousel-indicators').html(`<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${movieArrayIndex}" aria-label="Slide ${movieArrayIndex + 1}"></button>`)
+                        $('#movie-card-container').append(`<div class="card">
+                  <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex space-between bg-dark text-light">
+                    <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>
+                    <div id="movie rating" class="me-auto">
+                      ***** (${movieArray[movieArrayIndex].rating}/ 5)
+                    </div>
+                    <div class="dropdownmenu">
+                <button class="dropbutton" id="m-current-city">
+                  OPTIONS
+                </button>
+                <div id="Dropdown" class="dropdownmenu-content">
+                  <ul>
+                      <li>Edit</li>
+                      <li>Delete</li>
+                  </ul>
+                </div>
+                  </div>
+                  <img class="card-img-top" src=${movieArray[movieArrayIndex].poster} alt="Card image cap">
+                  <div class="card-body">
+                    <p class="card-text">${movieArray[movieArrayIndex].title} will be coming soon to a theatre near you! <br> ${movieArray[movieArrayIndex].plot}</p>
+                  </div>
+                </div>`)
+                    }
+                }
+            }
+            catch (err){
+                console.log('good')
             }
         }
     }
 
-    // Movies.insertMovieCards();
+    Movies.insertMovieCards();
     // $.get()
 
 // Allow users to add new movies

@@ -2,3 +2,7 @@ body{
     background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Fphotos%2Fbackground&psig=AOvVaw00fR-W8ZjRLZVSx1RJ-4iL&ust=1665111192488000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNCGutrMyvoCFQAAAAAdAAAAABAa");
     background-size: cover;
 }
+.card {
+    height: 25%;
+    width: 25%;
+}
