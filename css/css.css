@@ -10,10 +10,18 @@ body{
     background-color: black;
     color: white;
 }
+.chartreuse-mode{
+    background-color: chartreuse;
+    color: hotpink;
+}
 #movie-card-container{
     display: flex;
 }
 .poster-size-control {
     width: 20vw;
     height: 30vh;
+}
+
+h2>.card-title {
+    width: fit-content;
 }

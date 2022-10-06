@@ -22,6 +22,8 @@
                     <li><button id="new-movie-button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#new-movie-modal"><span class="badge bg-secondary">+</span> New Movie</button></li>
                     <li><a id="filter-button" class="dropdown-item"><span class="badge bg-secondary">V</span> Filter</a></li>
                     <li><a id="dark-mode-button" class="dropdown-item bg-dark text-light"><span class="badge .dark-mode">0</span> Dark</a></li>
+                    <li><button id="chartreuse-mode-button" class="dropdown-item"><span class="badge bg-secondary">0</span> Chartreuse</button></li>
+
                 </ul>
             </div>
 <!-- Modal for adding new card -->
@@ -51,6 +53,34 @@
                     </div>
                 </div>
             </div>
+<!--            Modal for editing card -->
+            <div class="modal fade" id="edit-movie-modal" tabindex="-1" aria-labelledby="new-modal-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="edit-modal-label"> Edit Movie</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="new-movie-title" class="col-form-label">Edit Title:</label>
+                                    <input type="text" class="form-control" id="edit-movie-title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="new-description-text" class="col-form-label">Edit Description:</label>
+                                    <textarea class="form-control" id="edit-description-text"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <span class="navbar-brand mb-0 h1">Movies Website</span>
 
         </div>

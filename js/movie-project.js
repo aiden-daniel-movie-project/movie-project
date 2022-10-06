@@ -41,60 +41,46 @@ $(function (){
                 console.log(movieArray)
 
                 for (let movieArrayIndex = 0; movieArrayIndex < movieArray.length; movieArrayIndex++) {
-                    if (movieArrayIndex === 0){
-                        console.log('yo')
-                        // $('.carousel-indicators').html(`<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`)
-                        $('#movie-card-container').html(`<div class="card">
-                  <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex space-between bg-dark text-light">
-                    <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>
-                    <div id="movie rating" class="me-auto">
-                      ***** (${movieArray[movieArrayIndex].rating}/ 5)
-                    </div>
-                    <div class="dropdownmenu">
-                <button class="dropbutton" id="m-current-city">
-                  OPTIONS
-                </button>
-                <div id="Dropdown" class="dropdownmenu-content">
-                  <ul>
-                      <li>Edit</li>
-                      <li>Delete</li>
-                  </ul>
-                </div>
-                  </div>
-                  <div class="poster-size-control">
-                      <img class="img-fluid" src=${movieArray[movieArrayIndex].poster} alt="Card image cap">
-                  </div>
-                  <div class="card-body">
-                    <p class="card-text">${movieArray[movieArrayIndex].title} will be coming soon to a theatre near you! <br> ${movieArray[movieArrayIndex].plot}</p>
-                  </div>
-                </div>`)
-                    } else {
                         // $('.carousel-indicators').html(`<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${movieArrayIndex}" aria-label="Slide ${movieArrayIndex + 1}"></button>`)
-                        $('#movie-card-container').append(`<div class="card">
-                  <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex space-between bg-dark text-light">
-                    <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>
-                    <div id="movie rating" class="me-auto">
-                      ***** (${movieArray[movieArrayIndex].rating}/ 5)
-                    </div>
-                    <div class="dropdownmenu">
-                <button class="dropbutton" id="m-current-city">
-                  OPTIONS
-                </button>
-                <div id="Dropdown" class="dropdownmenu-content">
-                  <ul>
-                      <li>Edit</li>
-                      <li>Delete</li>
+                        $('#movie-card-container').append(`
+<div class="card">
+    <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex-column">
+        <header>
+            <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>
+                <div id="movie rating" class="me-auto">
+                    ***** (${movieArray[movieArrayIndex].rating}/ 5)
+                </div>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown button
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal">Edit</a></li>
+                    <li><a class="dropdown-item" href="#">Delete</a></li>
                   </ul>
                 </div>
-                  </div>
-                  <div class="poster-size-control">
-                      <img class="img-fluid" src=${movieArray[movieArrayIndex].poster} alt="Card image cap">
-                  </div>
-                  <div class="card-body">
-                    <p class="card-text">${movieArray[movieArrayIndex].title} will be coming soon to a theatre near you! <br> ${movieArray[movieArrayIndex].plot}</p>
-                  </div>
-                </div>`)
-                    }
+<!--                                <div class="dropdownmenu">-->
+<!--                                    <button class="dropbutton" id="m-current-city">-->
+<!--                                      OPTIONS-->
+<!--                                    </button>-->
+<!--                                    <div id="Dropdown" class="dropdownmenu-content">-->
+<!--                                          <ul>-->
+<!--                                              <li class="dr">Edit</li>-->
+<!--                                              <li>Delete</li>-->
+<!--                                          </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+        </header>
+            <div class="poster-size-control">
+                <img class="img-fluid" src=${movieArray[movieArrayIndex].poster} alt="Card image cap">
+            </div>
+            <div class="card-body">
+                <p class="card-text">${movieArray[movieArrayIndex].title} will be coming soon to a theatre near you! <br> ${movieArray[movieArrayIndex].plot}</p>
+            </div>
+    </div>
+</div>
+`)
+
                 }
             }
             catch (err){
