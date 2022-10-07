@@ -1,9 +1,4 @@
 $(function (){
-    /* todo
-    call method on click for add
-
-    tie delete method to delete button
-     */
 
     const Movies = {
         URL: 'https:fuchsia-almondine-fisher.glitch.me/movies',
@@ -20,7 +15,6 @@ $(function (){
                         rating: $('#new-rating').val(),
                         title: $('#new-movie-title').val(),
                         year: ''
-                        //for all of these im going to have to save the form values to a variabl
         },
 
         newMovieRequest() {
@@ -47,8 +41,7 @@ $(function (){
             }
         },
         deleteRequest(number) {
-            let idNumber = number.slice(7);
-            fetch(Movies.URL + `/${idNumber}`, Movies.deleteOptions).then(Movies.getRequest);
+            fetch(Movies.URL + `/${number}`, Movies.deleteOptions).then(Movies.getRequest);
         },
         async insertMovieCards(){
             try {
@@ -58,7 +51,7 @@ $(function (){
                 for (let movieArrayIndex = 0; movieArrayIndex < movieArray.length; movieArrayIndex++) {
                     $('#movie-card-container').append(`
                         <div class="card">
-                            <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex-column">
+                            <div id="card-${movieArrayIndex}" class="d-flex-column">
                                 <header>
                                     <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>
                                     <div id="movie rating" class="me-auto">
@@ -69,8 +62,8 @@ $(function (){
                                          Dropdown button
                                          </button>
                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                             <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal-${movieArray[movieArrayIndex].id}">Edit</li>
-                                             <li class="dropdown-item" id="delete-${movieArray[movieArrayIndex].id}">Delete</li>
+                                             <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal-${movieArrayIndex}">Edit</li>
+                                             <li class="dropdown-item" id="delete-${movieArrayIndex}">Delete</li>
                                          </ul>
                                     </div>
                                 </header>
@@ -122,6 +115,48 @@ $(function (){
             } catch (err){
                 console.log('It didnt work')
             }
+            $('#add-new-button').on('click',function(){
+                Movies.newMovieRequest();
+                Movies.insertMovieCards();
+            })
+            $('#delete-0').on('click',function(){
+                alert("yo");
+                Movies.deleteRequest('0');
+                Movies.insertMovieCards();
+            })
+            $('#delete-1').on('click',function(){
+                Movies.deleteRequest('1');
+                Movies.insertMovieCards();
+            })
+            $('#delete-2').on('click',function(){
+                Movies.deleteRequest('2');
+                Movies.insertMovieCards();
+            })
+            $('#delete-3').on('click',function(){
+                Movies.deleteRequest('3');
+                Movies.insertMovieCards();
+            })
+            $('#delete-4').on('click',function(){
+                alert('yo')
+                Movies.deleteRequest('4');
+                Movies.insertMovieCards();
+            })
+            $('#delete-5').on('click',function(){
+                Movies.deleteRequest('5');
+                Movies.insertMovieCards();
+            })
+            $('#delete-6').on('click',function(){
+                Movies.deleteRequest('6');
+                Movies.insertMovieCards();
+            })
+            $('#delete-7').on('click',function(){
+                Movies.deleteRequest('7');
+                Movies.insertMovieCards();
+            })
+            $('#delete-8').on('click',function(){
+                Movies.deleteRequest('8');
+                Movies.insertMovieCards();
+            })
         }
     }
     const Content = {
@@ -143,47 +178,6 @@ $(function (){
     Movies.insertMovieCards();
 
 
-    $('#add-new-button').on('click',function(){
-        Movies.newMovieRequest();
-        Movies.insertMovieCards();
-    })
 
-    $('#delete-0').on('click',function(){
-        Movies.deleteRequest('delete-0');
-        Movies.insertMovieCards();
-    })
-    $('#delete-1').on('click',function(){
-        Movies.deleteRequest('delete-1');
-        Movies.insertMovieCards();
-    })
-    $('#delete-2').on('click',function(){
-        Movies.deleteRequest('delete-2');
-        Movies.insertMovieCards();
-    })
-    $('#delete-3').on('click',function(){
-        Movies.deleteRequest('delete-3');
-        Movies.insertMovieCards();
-    })
-    $('#delete-4').on('click',function(){
-        alert('yo')
-        Movies.deleteRequest('delete-4');
-        Movies.insertMovieCards();
-    })
-    $('#delete-5').on('click',function(){
-        Movies.deleteRequest('delete-5');
-        Movies.insertMovieCards();
-    })
-    $('#delete-6').on('click',function(){
-        Movies.deleteRequest('delete-6');
-        Movies.insertMovieCards();
-    })
-    $('#delete-7').on('click',function(){
-        Movies.deleteRequest('delete-7');
-        Movies.insertMovieCards();
-    })
-    $('#delete-8').on('click',function(){
-        Movies.deleteRequest('delete-8');
-        Movies.insertMovieCards();
-    })
 
 });
