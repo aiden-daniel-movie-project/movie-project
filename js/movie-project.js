@@ -14,32 +14,22 @@ $(function (){
         getRequest(){
             return  fetch(`${Movies.URL}`).then(resp => resp.json());
         },
-        // newMovieContent(){
-        //     $('#add-new-button').on('click',function(){
-        //         const newMovieObject = {
-        //                 actors: 'form actor input',
-        //                 director: 'form director input',
-        //                 genre: 'form genre input',
-        //                 id: 'form id input',
-        //                 plot: $('#new-description-text').value,
-        //                 poster: 'form poster input',
-        //                 rating: 'form rating input',
-        //                 title: $('#new-movie-title').value,
-        //                 year: 'form year input'
-        //                 //for all of these im going to have to save the form values to a variable
-        //             }
-        //     })
-        // },
-        // newMovieOptions: {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(Movies.newMovieContent)
-        // },
-        // newMovieRequest() {
-        //     fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
-        // },
+        newMovieContent: {
+                        actors: '',
+                        director: '',
+                        genre: '',
+                        id: '',
+                        plot: $('#new-description-text').value,
+                        poster: '',
+                        rating: $('#new-rating').value,
+                        title: $('#new-movie-title').value,
+                        year: ''
+                        //for all of these im going to have to save the form values to a variabl
+        },
+
+        newMovieRequest() {
+            fetch(Movies.URL, Content.newMovieOptions).then(Movies.getRequest);
+        },
         // editMovieContent: {
         //     actors: 'form actor input',
         //     director: 'form director input',
@@ -73,7 +63,9 @@ $(function (){
         // },
         async insertMovieCards(){
             try {
+                $('#movie-card-container').html('Loading...')
                 let movieArray = await Movies.getRequest();
+                $('#movie-card-container').html('')
                 for (let movieArrayIndex = 0; movieArrayIndex < movieArray.length; movieArrayIndex++) {
                     $('#movie-card-container').append(`
                         <div class="card">
@@ -107,9 +99,20 @@ $(function (){
             }
         }
     }
-
+    const Content = {
+        newMovieOptions: {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Movies.newMovieContent)
+        }
+    }
     Movies.insertMovieCards();
-    $('')
+    $('#add-new-button').on('click',function(){
+        Movies.newMovieRequest();
+        Movies.insertMovieCards();
+    })
 
 // Allow users to add new movies
 // Create a form for adding a new movie that has fields for the movie's title and rating
