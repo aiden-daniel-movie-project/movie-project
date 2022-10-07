@@ -74,7 +74,7 @@ $(function (){
                                          Dropdown button
                                          </button>
                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                             <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal">Edit</li>
+                                             <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal-${movieArray[movieArrayIndex].id}">Edit</li>
                                              <li class="dropdown-item">Delete</li>
                                          </ul>
                                     </div>
@@ -87,7 +87,7 @@ $(function (){
                                     </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="edit-movie-modal" tabindex="-1" aria-labelledby="new-modal-label" aria-hidden="true">
+                        <div class="modal fade" id="edit-movie-modal-${movieArray[movieArrayIndex].id}" tabindex="-1" aria-labelledby="new-modal-label" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -152,7 +152,6 @@ $(function (){
     })
 
 // Allow users to add new movies
-// Create a form for adding a new movie that has fields for the movie's title and rating
 // When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
 
 // Allow users to edit existing movies
