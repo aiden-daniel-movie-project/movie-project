@@ -8,7 +8,6 @@ $(function (){
     tie delete method to delete button
      */
 
-
     const Movies = {
         URL: 'https:fuchsia-almondine-fisher.glitch.me/movies',
         getRequest(){
@@ -52,8 +51,9 @@ $(function (){
                 'Content-Type': 'application/json'
             }
         },
-        deleteRequest() {
-            fetch(Movies.URL + `/${$()}`, Movies.deleteOptions).then(Movies.getRequest);
+        deleteRequest(number) {
+            let idNumber = number.slice(7);
+            fetch(Movies.URL + `/${idNumber}`, Movies.deleteOptions).then(Movies.getRequest);
         },
         async insertMovieCards(){
             try {
@@ -75,7 +75,7 @@ $(function (){
                                          </button>
                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                              <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal-${movieArray[movieArrayIndex].id}">Edit</li>
-                                             <li class="dropdown-item">Delete</li>
+                                             <li class="dropdown-item" id="delete-${movieArray[movieArrayIndex].id}">Delete</li>
                                          </ul>
                                     </div>
                                 </header>
@@ -104,7 +104,7 @@ $(function (){
                                                 <label for="edit-description-text" class="col-form-label">Edit Description:</label>
                                                 <textarea class="form-control" id="edit-description-text">${movieArray[movieArrayIndex].plot}</textarea>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-3 btn-group dropend">
                                                 <label for="edit-rating" class="col-form-label">Rating:</label>
                                                 <button class="form-control dropdown-toggle" type="button" data-bs-toggle="dropdown" id="edit-rating"></button>
                                                 <ul class="dropdown-menu">
@@ -151,6 +151,35 @@ $(function (){
         Movies.insertMovieCards();
     })
 
+    $('#delete-0').on('click',function(){
+        Movies.deleteRequest('delete-0');
+    })
+    $('#delete-1').on('click',function(){
+        Movies.deleteRequest('delete-1');
+    })
+    $('#delete-2').on('click',function(){
+        Movies.deleteRequest('delete-2');
+    })
+    $('#delete-3').on('click',function(){
+        Movies.deleteRequest('delete-3');
+    })
+    $('#delete-4').on('click',function(){
+        Movies.deleteRequest('delete-4');
+    })
+    $('#delete-5').on('click',function(){
+        Movies.deleteRequest('delete-5');
+    })
+    $('#delete-6').on('click',function(){
+        Movies.deleteRequest('delete-6');
+    })
+    $('#delete-7').on('click',function(){
+        Movies.deleteRequest('delete-7');
+    })
+    $('#delete-8').on('click',function(){
+        Movies.deleteRequest('delete-8');
+    })
+
+
 // Allow users to add new movies
 // When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form
 
@@ -158,9 +187,6 @@ $(function (){
 // A form should be pre-populated with the selected movie's details
 // Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
 
-// Delete movies
-// Each movie should have a "delete" button
-// When this button is clicked, your javascript should send a DELETE request
 
 // Bonuses
 // Display a "loading..." message
