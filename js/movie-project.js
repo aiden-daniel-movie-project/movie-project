@@ -1,109 +1,115 @@
 $(function (){
-// On page load:
-// Make an AJAX request to get a listing of all the movies
+    /* todo
+    finish new object
+    call method on click for add
+
+    make edit form prepoulated
+    tie edit form to edit button
+    tie delete method to delete button
+     */
+
+
     const Movies = {
         URL: 'https:fuchsia-almondine-fisher.glitch.me/movies',
         getRequest(){
             return  fetch(`${Movies.URL}`).then(resp => resp.json());
         },
-        newMovieContent: {
-            actors: 'form actor input',
-            director: 'form director input',
-            genre: 'form genre input',
-            id: 'form id input',
-            plot: 'form plot input',
-            poster: 'form poster input',
-            rating: 'form rating input',
-            title: 'form title input',
-            year: 'form year input'
-            //for all of these im going to have to save the form values to a variable
-        },
-        newMovieOptions: {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(Movies.newMovieContent)
-        },
-        newMovieRequest() {
-            fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
-        },
-        editMovieContent: {
-            actors: 'form actor input',
-            director: 'form director input',
-            genre: 'form genre input',
-            id: 'form id input',
-            plot: 'form plot input',
-            poster: 'form poster input',
-            rating: 'form rating input',
-            title: 'form title input',
-            year: 'form year input'
-            //for all of these im going to have to save the form values to a variable
-        },
-        editOptions: {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(Movies.editMovieContent)
-        },
-        editRequest() {
-            fetch(Movies.URL + Movies.editMovieContent.id, Movies.editOptions).then(Movies.getRequest);
-        },
-        deleteOptions: {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        },
-        deleteRequest() {
-            fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
-        },
+        // newMovieContent(){
+        //     $('#add-new-button').on('click',function(){
+        //         const newMovieObject = {
+        //                 actors: 'form actor input',
+        //                 director: 'form director input',
+        //                 genre: 'form genre input',
+        //                 id: 'form id input',
+        //                 plot: $('#new-description-text').value,
+        //                 poster: 'form poster input',
+        //                 rating: 'form rating input',
+        //                 title: $('#new-movie-title').value,
+        //                 year: 'form year input'
+        //                 //for all of these im going to have to save the form values to a variable
+        //             }
+        //     })
+        // },
+        // newMovieOptions: {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(Movies.newMovieContent)
+        // },
+        // newMovieRequest() {
+        //     fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
+        // },
+        // editMovieContent: {
+        //     actors: 'form actor input',
+        //     director: 'form director input',
+        //     genre: 'form genre input',
+        //     id: 'form id input',
+        //     plot: 'form plot input',
+        //     poster: 'form poster input',
+        //     rating: 'form rating input',
+        //     title: 'form title input',
+        //     year: 'form year input'
+        //     //for all of these im going to have to save the form values to a variable
+        // },
+        // editOptions: {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(Movies.editMovieContent)
+        // },
+        // editRequest() {
+        //     fetch(Movies.URL + Movies.editMovieContent.id, Movies.editOptions).then(Movies.getRequest);
+        // },
+        // deleteOptions: {
+        //     method: 'DELETE',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // },
+        // deleteRequest() {
+        //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
+        // },
         async insertMovieCards(){
             try {
                 let movieArray = await Movies.getRequest();
-                console.log(movieArray)
-
                 for (let movieArrayIndex = 0; movieArrayIndex < movieArray.length; movieArrayIndex++) {
-                    // $('.carousel-indicators').html(`<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${movieArrayIndex}" aria-label="Slide ${movieArrayIndex + 1}"></button>`)
                     $('#movie-card-container').append(`
-<div class="card">
-    <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex-column">
-        <header>
-            <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>
-                <div id="movie rating" class="me-auto">
-                    ***** (${movieArray[movieArrayIndex].rating}/ 5)
-                </div>
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal">Edit</a></li>
-                    <li><a class="dropdown-item" href="#">Delete</a></li>
-                  </ul>
-                </div>
-        </header>
-            <div class="poster-size-control">
-                <img class="img-fluid" src=${movieArray[movieArrayIndex].poster} alt="Card image cap">
-            </div>
-            <div class="card-body">
-                <p class="card-text">${movieArray[movieArrayIndex].title} will be coming soon to a theatre near you! <br> ${movieArray[movieArrayIndex].plot}</p>
-            </div>
-    </div>
-</div>
-`)
-
+                        <div class="card">
+                            <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex-column">
+                                <header>
+                                    <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>
+                                    <div id="movie rating" class="me-auto">
+                                        ***** (${movieArray[movieArrayIndex].rating}/ 5)
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                         Dropdown button
+                                         </button>
+                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                             <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal">Edit</a></li>
+                                             <li><a class="dropdown-item" href="#">Delete</a></li>
+                                         </ul>
+                                    </div>
+                                </header>
+                                    <div class="poster-size-control">
+                                        <img class="img-fluid" src=${movieArray[movieArrayIndex].poster} alt="Card image cap">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">${movieArray[movieArrayIndex].title} will be coming soon to a theatre near you! <br> ${movieArray[movieArrayIndex].plot}</p>
+                                    </div>
+                            </div>
+                        </div>`)
                 }
-            }
-            catch (err){
-                console.log('good')
+            } catch (err){
+                console.log('It didnt work')
             }
         }
     }
 
     Movies.insertMovieCards();
-    // $.get()
+    $('')
 
 // Allow users to add new movies
 // Create a form for adding a new movie that has fields for the movie's title and rating
