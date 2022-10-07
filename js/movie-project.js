@@ -6,35 +6,59 @@ $(function (){
         getRequest(){
             return  fetch(`${Movies.URL}`).then(resp => resp.json());
         },
-        // newMovieOptions: {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(/*new movie reference*/)
-        // },
-        // newMovieRequest() {
-        //     fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
-        // },
-        // editOptions: {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(modification)
-        // },
-        // editRequest() {
-        //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.editOptions).then(Movies.getRequest);
-        // },
-        // deleteOptions: {
-        //     method: 'DELETE',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // },
-        // deleteRequest() {
-        //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
-        // }
+        newMovieContent: {
+            actors: 'form actor input',
+            director: 'form director input',
+            genre: 'form genre input',
+            id: 'form id input',
+            plot: 'form plot input',
+            poster: 'form poster input',
+            rating: 'form rating input',
+            title: 'form title input',
+            year: 'form year input'
+            //for all of these im going to have to save the form values to a variable
+        },
+        newMovieOptions: {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Movies.newMovieContent)
+        },
+        newMovieRequest() {
+            fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
+        },
+        editMovieContent: {
+            actors: 'form actor input',
+            director: 'form director input',
+            genre: 'form genre input',
+            id: 'form id input',
+            plot: 'form plot input',
+            poster: 'form poster input',
+            rating: 'form rating input',
+            title: 'form title input',
+            year: 'form year input'
+            //for all of these im going to have to save the form values to a variable
+        },
+        editOptions: {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Movies.editMovieContent)
+        },
+        editRequest() {
+            fetch(Movies.URL + Movies.editMovieContent.id, Movies.editOptions).then(Movies.getRequest);
+        },
+        deleteOptions: {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        },
+        deleteRequest() {
+            fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
+        },
         async insertMovieCards(){
             try {
                 let movieArray = await Movies.getRequest();
