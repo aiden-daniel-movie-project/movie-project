@@ -19,10 +19,10 @@ $(function (){
                         director: '',
                         genre: '',
                         id: '',
-                        plot: $('#new-description-text').value,
+                        plot: $('#new-description-text').val(),
                         poster: '',
-                        rating: $('#new-rating').value,
-                        title: $('#new-movie-title').value,
+                        rating: $('#new-rating').val(),
+                        title: $('#new-movie-title').val(),
                         year: ''
                         //for all of these im going to have to save the form values to a variabl
         },
@@ -30,37 +30,31 @@ $(function (){
         newMovieRequest() {
             fetch(Movies.URL, Content.newMovieOptions).then(Movies.getRequest);
         },
-        // editMovieContent: {
-        //     actors: 'form actor input',
-        //     director: 'form director input',
-        //     genre: 'form genre input',
-        //     id: 'form id input',
-        //     plot: 'form plot input',
-        //     poster: 'form poster input',
-        //     rating: 'form rating input',
-        //     title: 'form title input',
-        //     year: 'form year input'
-        //     //for all of these im going to have to save the form values to a variable
-        // },
-        // editOptions: {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(Movies.editMovieContent)
-        // },
+        editMovieContent: {
+            actors: '',
+            director: '',
+            genre: '',
+            id: '',
+            plot: $('#edit-description-text').val(),
+            poster: '',
+            rating: $('#edit-rating').val(),
+            title: $('#edit-movie-title').val(),
+            year: ''
+            //for all of these im going to have to save the form values to a variabl
+        },
+
         // editRequest() {
         //     fetch(Movies.URL + Movies.editMovieContent.id, Movies.editOptions).then(Movies.getRequest);
         // },
-        // deleteOptions: {
-        //     method: 'DELETE',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // },
-        // deleteRequest() {
-        //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
-        // },
+        deleteOptions: {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        },
+        deleteRequest() {
+            fetch(Movies.URL + `/${$()}`, Movies.deleteOptions).then(Movies.getRequest);
+        },
         async insertMovieCards(){
             try {
                 $('#movie-card-container').html('Loading...')
@@ -80,8 +74,8 @@ $(function (){
                                          Dropdown button
                                          </button>
                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                             <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal">Edit</a></li>
-                                             <li><a class="dropdown-item" href="#">Delete</a></li>
+                                             <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-movie-modal">Edit</li>
+                                             <li class="dropdown-item">Delete</li>
                                          </ul>
                                     </div>
                                 </header>
@@ -91,6 +85,42 @@ $(function (){
                                     <div class="card-body">
                                         <p class="card-text">${movieArray[movieArrayIndex].title} will be coming soon to a theatre near you! <br> ${movieArray[movieArrayIndex].plot}</p>
                                     </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="edit-movie-modal" tabindex="-1" aria-labelledby="new-modal-label" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="edit-modal-label"> Edit Movie</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="edit-movie-title" class="col-form-label">Edit Title:</label>
+                                                <input type="text" class="form-control" id="edit-movie-title" value="${movieArray[movieArrayIndex].title}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="edit-description-text" class="col-form-label">Edit Description:</label>
+                                                <textarea class="form-control" id="edit-description-text">${movieArray[movieArrayIndex].plot}</textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="edit-rating" class="col-form-label">Rating:</label>
+                                                <button class="form-control dropdown-toggle" type="button" data-bs-toggle="dropdown" id="edit-rating"></button>
+                                                <ul class="dropdown-menu">
+                                                    <li id="one-star"    class="dropdown-item">1</li>
+                                                    <li id="two-stars"   class="dropdown-item">2</li>
+                                                    <li id="three-stars" class="dropdown-item">3</li>
+                                                    <li id="four-stars"  class="dropdown-item">4</li>
+                                                    <li id="five-stars"  class="dropdown-item">5</li>
+                                                </ul>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="edit-button">Submit</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>`)
                 }
@@ -106,6 +136,13 @@ $(function (){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(Movies.newMovieContent)
+        },
+        editOptions: {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Movies.editMovieContent)
         }
     }
     Movies.insertMovieCards();
