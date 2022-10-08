@@ -45,7 +45,7 @@ $(function (){
         },
         async insertMovieCards(){
             try {
-                $('#movie-card-container').html('Loading...')
+                $('#movie-card-container').html('<h1>Loading...</h1>')
                 let movieArray = await Movies.getRequest();
                 $('#movie-card-container').html('')
                 for (let movieArrayIndex = 0; movieArrayIndex < movieArray.length; movieArrayIndex++) {
@@ -70,6 +70,7 @@ $(function (){
                                     <div class="poster-size-control">
                                         <img class="img-fluid" src=${movieArray[movieArrayIndex].poster} alt="Card image cap">
                                     </div>
+                                    <br>
                                     <div class="card-body">
                                         <p class="card-text">${movieArray[movieArrayIndex].title} will be coming soon to a theatre near you! <br> ${movieArray[movieArrayIndex].plot}</p>
                                     </div>
